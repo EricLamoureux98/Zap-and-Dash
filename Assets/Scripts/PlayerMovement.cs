@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundFriction = 0.9f;
 
     Rigidbody2D rb;
+    Animator anim;
     Vector2 moveInput;
     Vector2 velocity;
     bool grounded;
@@ -20,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        anim.SetBool("isJumping", !grounded); 
     }
 
     void FixedUpdate()
@@ -56,23 +63,32 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics2D.OverlapArea(groundCheck.bounds.min, groundCheck.bounds.max, groundMask);
     }
 
-    public void Move(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (grounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        }
-    }
-
     void Flip()
     {
         facingDirection *= -1;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        anim.SetBool("isRunning", true);
+
+        if (context.canceled)
+        {
+            anim.SetBool("isRunning", false);
+        }
+
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && grounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            anim.SetBool("isJumping", true);
+        }
+    }
+
 
 }
