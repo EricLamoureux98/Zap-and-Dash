@@ -15,22 +15,25 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Vector2 velocity;
     bool grounded;
+    float facingDirection = 1f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         CheckGround();
         MovePlayer();
-        ApplyFriction();             
+        ApplyFriction();     
+
+        // Checks direction player is facing in contrast to movement direction
+        if (moveInput.x > 0 && transform.localScale.x < 0 || moveInput.x < 0 && transform.localScale.x > 0)
+        {
+            Flip();
+        }
+        
     }
 
     void MovePlayer()
@@ -65,4 +68,11 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
+
+    void Flip()
+    {
+        facingDirection *= -1;
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
 }
