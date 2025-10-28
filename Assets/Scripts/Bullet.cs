@@ -22,4 +22,9 @@ public class Bullet : MonoBehaviour
         shootingDirection = fireDirection;
         rb.linearVelocity = shootingDirection * speed;
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
