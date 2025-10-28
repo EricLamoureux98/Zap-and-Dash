@@ -3,19 +3,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] BoxCollider2D groundCheck;
+    [Header("Components")]
     [SerializeField] LayerMask groundMask;
+    [SerializeField] BoxCollider2D groundCheck;
+
+    [Header("Player Stats")]
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
+    [Range(1f, 0f)] [SerializeField] float groundFriction = 0.9f;
 
-    [Range(1f, 0f)]
-    [SerializeField] float groundFriction = 0.9f;
+    public bool grounded { get; private set; }
 
     Rigidbody2D rb;
     Animator anim;
+
     Vector2 moveInput;
     Vector2 velocity;
-    bool grounded;
     float facingDirection = 1f;
 
     void Awake()
@@ -26,7 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        anim.SetBool("isJumping", !grounded); 
+        // Not proper but prevents animation from playing on ledges. 
+        if (Mathf.Abs(rb.linearVelocity.y) < 0.01f)
+        {
+            anim.SetBool("isJumping", false); 
+        }
     }
 
     void FixedUpdate()
@@ -52,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyFriction()
     {
-        if (grounded && moveInput.x == 0)
+        if (grounded && moveInput.x == 0 && rb.linearVelocity.y <= 0)
         {
             velocity.x *= groundFriction;
         }
