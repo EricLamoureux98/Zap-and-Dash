@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(1f, 0f)] [SerializeField] float groundFriction = 0.9f;
 
     public bool grounded { get; private set; }
+    public bool isMoving { get; private set; }
 
     Rigidbody2D rb;
     Animator anim;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         // Not proper but prevents animation from playing on ledges. 
         if (Mathf.Abs(rb.linearVelocity.y) < 0.01f)
         {
-            anim.SetBool("isJumping", false); 
+            anim.SetBool("isJumping", false);
         }
     }
 
@@ -68,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     void CheckGround()
     {
         grounded = Physics2D.OverlapArea(groundCheck.bounds.min, groundCheck.bounds.max, groundMask);
+        anim.SetBool("isGrounded", grounded);
     }
 
     void Flip()
@@ -79,10 +81,12 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         anim.SetBool("isRunning", true);
+        isMoving = true;
 
         if (context.canceled)
         {
             anim.SetBool("isRunning", false);
+            isMoving = false;
         }
 
         moveInput = context.ReadValue<Vector2>();
@@ -96,6 +100,4 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
     }
-
-
 }
