@@ -120,7 +120,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -161,375 +161,375 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Recharge_0
+      name: Reload_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 358e65907f6eb9320800000000000000
-      internalID: 2565898361405630547
+      spriteID: 04d1d85fb9ae6f04cb8cfda6460b9735
+      internalID: -1712878813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_1
+      name: Reload_1
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 087dd646830abdd90800000000000000
-      internalID: -7071882625791699072
+      spriteID: 2ee2afb5f5e507947bb788c1c82de637
+      internalID: -2032535214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_2
+      name: Reload_2
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a30e01f922197b10800000000000000
-      internalID: 1979633482553230243
+      spriteID: cfc019b8b5fda384db6262664570095a
+      internalID: 1150521034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_3
+      name: Reload_3
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 27834c4b942137080800000000000000
-      internalID: -9190982306758379406
+      spriteID: 80d88afcba442cb4db010965ae393333
+      internalID: 2078737144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_4
+      name: Reload_4
       rect:
         serializedVersion: 2
         x: 512
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 77217f2e5df044ba0800000000000000
-      internalID: -6105737783497256329
+      spriteID: cd2a1750966de454c8b207bebcb653f0
+      internalID: -736390558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_5
+      name: Reload_5
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eebaef1deac153290800000000000000
-      internalID: -7911385633233392658
+      spriteID: 3642c753c381b6c4bb2e916dccc012cd
+      internalID: 701437368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_6
+      name: Reload_6
       rect:
         serializedVersion: 2
         x: 768
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae3dc626bfd3358d0800000000000000
-      internalID: -2858873188552748054
+      spriteID: a7ef2750747b43f4d8274370e0fa13b8
+      internalID: -1136985406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_7
+      name: Reload_7
       rect:
         serializedVersion: 2
         x: 896
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e03b4535a29727ac0800000000000000
-      internalID: -3858888708009446642
+      spriteID: 36bcded2138ce22478cc222804fc1060
+      internalID: 228742053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_8
+      name: Reload_8
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 51f6a1d60f86324e0800000000000000
-      internalID: -2007645627045220587
+      spriteID: ba12c942910616a4dbabb1a9120ddbd0
+      internalID: 1576780678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_9
+      name: Reload_9
       rect:
         serializedVersion: 2
         x: 1152
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6e1ff99ebdb674710800000000000000
-      internalID: 1677427978480382438
+      spriteID: 4fc6ad4146809544da2206822f433e6b
+      internalID: 1250047163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_10
+      name: Reload_10
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4537b3b984db4c10800000000000000
-      internalID: 2038956944206017866
+      spriteID: 00e31aa8264b0784798f853efac2bb70
+      internalID: 598598310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_11
+      name: Reload_11
       rect:
         serializedVersion: 2
         x: 1408
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e3e49145f16b6a90800000000000000
-      internalID: -7319649063365450777
+      spriteID: 832df7a9e3fe762499c8f094baf7c2f7
+      internalID: 807705568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_12
+      name: Reload_12
       rect:
         serializedVersion: 2
         x: 1536
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24e138e130c9cc8d0800000000000000
-      internalID: -2824711329057399230
+      spriteID: 69dab884b9f9c704ca81ca312d75b016
+      internalID: 242515419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_13
+      name: Reload_13
       rect:
         serializedVersion: 2
         x: 1664
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b95a11629db57d950800000000000000
-      internalID: 6473743977573098907
+      spriteID: 0fc8cf12bc107f64ca0d447fbf851e0f
+      internalID: -9259764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_14
+      name: Reload_14
       rect:
         serializedVersion: 2
         x: 1792
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d2eec17ca082ba090800000000000000
-      internalID: -8022274284475060691
+      spriteID: 468f5b8df32b63a4eadce10cea5328df
+      internalID: -121524701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_15
+      name: Reload_15
       rect:
         serializedVersion: 2
         x: 1920
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a9b3c70ec4bbd00f0800000000000000
-      internalID: -1149056391051461734
+      spriteID: 088fa3cf54d601e47878d3f95bc52cd8
+      internalID: -1528737541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recharge_16
+      name: Reload_16
       rect:
         serializedVersion: 2
         x: 2048
         y: 0
         width: 128
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.46, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e117e9fcf80242a70800000000000000
-      internalID: 8801195373824471326
+      spriteID: a57d7bac0b24b30458cae0f30d513105
+      internalID: -1097215901
       vertices: []
       indices: 
       edges: []
@@ -548,25 +548,25 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":17.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":17.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.46000000834465029,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Recharge_0: 2565898361405630547
-      Recharge_1: -7071882625791699072
-      Recharge_10: 2038956944206017866
-      Recharge_11: -7319649063365450777
-      Recharge_12: -2824711329057399230
-      Recharge_13: 6473743977573098907
-      Recharge_14: -8022274284475060691
-      Recharge_15: -1149056391051461734
-      Recharge_16: 8801195373824471326
-      Recharge_2: 1979633482553230243
-      Recharge_3: -9190982306758379406
-      Recharge_4: -6105737783497256329
-      Recharge_5: -7911385633233392658
-      Recharge_6: -2858873188552748054
-      Recharge_7: -3858888708009446642
-      Recharge_8: -2007645627045220587
-      Recharge_9: 1677427978480382438
+      Reload_0: -1712878813
+      Reload_1: -2032535214
+      Reload_10: 598598310
+      Reload_11: 807705568
+      Reload_12: 242515419
+      Reload_13: -9259764
+      Reload_14: -121524701
+      Reload_15: -1528737541
+      Reload_16: -1097215901
+      Reload_2: 1150521034
+      Reload_3: 2078737144
+      Reload_4: -736390558
+      Reload_5: 701437368
+      Reload_6: -1136985406
+      Reload_7: 228742053
+      Reload_8: 1576780678
+      Reload_9: 1250047163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
