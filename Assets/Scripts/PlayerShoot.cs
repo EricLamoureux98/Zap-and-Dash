@@ -25,6 +25,7 @@ public class PlayerShoot : MonoBehaviour
 
         GameObject bulletToShoot = Instantiate(bulletPrefab, currentFirePoint.position, transform.rotation);
         bulletToShoot.GetComponent<Bullet>().FireBullet(aimTowardMouse.AimDirection);
+        bulletToShoot.GetComponent<Bullet>().shooterTag = gameObject.tag; // assign who fired it
     }
 
     void FindFirePoint()
