@@ -13,7 +13,6 @@ public class EnemyPatrol : MonoBehaviour
 
     Transform currentPoint;
     float pauseTimer;
-    float facingDirection = 1f;
 
     void Awake()
     {
@@ -55,13 +54,15 @@ public class EnemyPatrol : MonoBehaviour
 
     void Flip()
     {
-        facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(pointA.transform.position, arriveThreshold);
         Gizmos.DrawWireSphere(pointB.transform.position, arriveThreshold);
+        Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
     }
 }

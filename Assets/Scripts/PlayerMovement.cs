@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveInput;
     Vector2 velocity;
-    float facingDirection = 1f;
 
     void Awake()
     {
@@ -74,8 +73,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
-        facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
     public void Move(InputAction.CallbackContext context)

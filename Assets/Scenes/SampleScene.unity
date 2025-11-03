@@ -9143,6 +9143,7 @@ GameObject:
   - component: {fileID: 2101004211}
   - component: {fileID: 2101004213}
   - component: {fileID: 2101004214}
+  - component: {fileID: 2101004216}
   - component: {fileID: 2101004215}
   m_Layer: 0
   m_Name: Enemy
@@ -9331,8 +9332,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a955af555e00fd54cb50aaae737218aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 1
+  maxHealth: 3
 --- !u!114 &2101004215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101004208}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62075553ad7e17c4886b730c0f80e23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
+  pointA: {fileID: 691274169}
+  pointB: {fileID: 890278069}
+  speed: 2.5
+  arriveThreshold: 0.5
+  pauseAtPointTime: 3
+--- !u!114 &2101004216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9341,14 +9359,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2101004208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62075553ad7e17c4886b730c0f80e23e, type: 3}
+  m_Script: {fileID: 11500000, guid: 446bc9bc5624e18479c74ce29aa88003, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
-  pointA: {fileID: 691274169}
-  pointB: {fileID: 890278069}
-  speed: 3
-  arriveThreshold: 0.5
-  pauseAtPointTime: 3
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  enemyPatrol: {fileID: 2101004215}
+  isPatrolling: 0
+  isAttacking: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

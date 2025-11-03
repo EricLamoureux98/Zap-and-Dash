@@ -41,5 +41,7 @@ public class Bullet : MonoBehaviour
             collision.GetComponent<Health>()?.TakeDamage(damage);
             Destroy(gameObject);
         }
+
+        Destroy(gameObject);
     }
 }
