@@ -3,8 +3,9 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyPatrol enemyPatrol;
+    [SerializeField] EnemyAttack enemyAttack;
 
-    public bool isPatrolling = false;
+    public bool isPatrolling;
     public bool isAttacking = false;
 
     Rigidbody2D rb;
@@ -14,6 +15,11 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        //isPatrolling = true;
     }
 
     void Update()
