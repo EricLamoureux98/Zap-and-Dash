@@ -6,7 +6,7 @@ public class Notes
     // Move shooting logic into EnemyAttack script
     // Setup an Enum in EnemyController
     // Make enemy turn in shoot direction
-    // Fix enemy pivot point
+    // Fix enemy pivot point - done
 
 
     // Scriptable objects

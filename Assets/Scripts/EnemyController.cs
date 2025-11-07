@@ -4,12 +4,11 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyPatrol enemyPatrol;
     [SerializeField] EnemyAttack enemyAttack;
-
-    public bool isPatrolling;
-    public bool isAttacking = false;
+    [SerializeField] EnemyCheckForPlayer checkForPlayer;
 
     Rigidbody2D rb;
     Animator anim;
+    EnemyState enemyState;
 
     void Awake()
     {
@@ -19,20 +18,48 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        //isPatrolling = true;
+        ChangeState(EnemyState.Patrolling);
     }
 
     void Update()
     {
-        if (isPatrolling)
+        bool seesPlayer = checkForPlayer.CheckForPlayer();
+
+        if (seesPlayer)
         {
-            enemyPatrol.enabled = true;
+            ChangeState(EnemyState.Attacking);
         }
-        else if(!isPatrolling)
+        else if (!seesPlayer)
         {
-            enemyPatrol.enabled = false;
-            rb.linearVelocity = Vector2.zero;
-            anim.SetBool("isWalking", false);
+            ChangeState(EnemyState.Patrolling);
         }
     }
+
+    void ChangeState(EnemyState newState)
+    {
+        enemyState = newState;
+
+        if (newState == EnemyState.Patrolling)
+        {
+            enemyPatrol.enabled = true;
+            enemyAttack.enabled = false;
+            anim.SetBool("isShooting", false);
+            //anim.SetBool("isWalking", true);
+        }
+
+        if (newState == EnemyState.Attacking)
+        {
+            enemyPatrol.enabled = false;
+            enemyAttack.enabled = true;
+            rb.linearVelocity = Vector2.zero;
+            //anim.SetBool("isWalking", false);
+            anim.SetBool("isShooting", true);
+        }
+    }
+}
+
+public enum EnemyState
+{
+    Patrolling,
+    Attacking
 }

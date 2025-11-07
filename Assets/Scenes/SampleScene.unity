@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 251175949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.17, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0.934, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227,6 +227,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 610698120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &492550422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492550423}
+  m_Layer: 0
+  m_Name: DetectionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &492550423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492550422}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.58, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2101004210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -9257,6 +9288,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 251175950}
+  - {fileID: 492550423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2101004211
@@ -9398,8 +9430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   enemyPatrol: {fileID: 2101004215}
   enemyAttack: {fileID: 2101004217}
-  isPatrolling: 0
-  isAttacking: 0
+  checkForPlayer: {fileID: 2101004218}
 --- !u!114 &2101004217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9412,6 +9443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16e6a39ef502db4fbb08746d10921d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
+  firePoint: {fileID: 251175950}
+  fireRate: 1
+  checkForPlayer: {fileID: 2101004218}
 --- !u!114 &2101004218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9421,15 +9456,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2101004208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096dabe9bcd0bf845bd6cbccebc69835, type: 3}
+  m_Script: {fileID: 11500000, guid: 184fc51993cad2b4080232bd7936eacf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyFollowPlayer
-  followSpeed: 3
-  viewDistance: 7.5
-  shootingRange: 5.5
-  bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
-  firePoint: {fileID: 251175950}
-  fireRate: 1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCheckForPlayer
+  viewDistance: 4.79
+  detectionPoint: {fileID: 492550423}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
