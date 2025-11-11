@@ -3,15 +3,15 @@ using UnityEngine;
 public class Notes
 {
     
-    // Move shooting logic into EnemyAttack script
-    // Setup an Enum in EnemyController
     // Make enemy turn in shoot direction
-    // Fix enemy pivot point - done
-
+    // Add a timer for how long enemy looks for player
 
     // Scriptable objects
 
 
+    // Move shooting logic into EnemyAttack script - done
+    // Setup an Enum in EnemyController - done
+    // Fix enemy pivot point - done
 
 
 
