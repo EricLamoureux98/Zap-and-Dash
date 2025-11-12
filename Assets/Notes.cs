@@ -5,6 +5,7 @@ public class Notes
     
     // Make enemy turn in shoot direction
     // Add a timer for how long enemy looks for player
+    // Change to attacking state if shot at
 
     // Scriptable objects
 

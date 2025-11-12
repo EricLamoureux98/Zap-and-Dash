@@ -15128,6 +15128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62075553ad7e17c4886b730c0f80e23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
+  checkForPlayer: {fileID: 2101004218}
   pointA: {fileID: 691274169}
   pointB: {fileID: 890278069}
   speed: 2.5
@@ -15163,6 +15164,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
   firePoint: {fileID: 251175950}
   fireRate: 1
+  continueFiringTime: 5
   checkForPlayer: {fileID: 2101004218}
 --- !u!114 &2101004218
 MonoBehaviour:

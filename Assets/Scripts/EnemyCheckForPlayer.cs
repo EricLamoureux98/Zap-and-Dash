@@ -20,15 +20,18 @@ public class EnemyCheckForPlayer : MonoBehaviour
         if (target != null)
         {
             player = target.transform;
-            return true;            
+            return true;
         }
-        return false;
+        else
+        {
+            player = null;
+            return false;
+        }
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(detectionPoint.position, viewDistance);
-        //Gizmos.DrawWireSphere(detectionPoint.position, shootingRange);
     }
 }

@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         if (newState == EnemyState.Patrolling)
         {
             enemyPatrol.enabled = true;
-            enemyAttack.enabled = false;
+            //enemyAttack.enabled = false; <--------- TESTING
             anim.SetBool("isShooting", false);
             //anim.SetBool("isWalking", true);
         }

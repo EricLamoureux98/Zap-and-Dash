@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    [SerializeField] EnemyCheckForPlayer checkForPlayer;
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
     [SerializeField] float speed;
@@ -27,7 +28,15 @@ public class EnemyPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
-        DoPatrol();
+        bool seesPlayer = checkForPlayer.CheckForPlayer();        
+        if (seesPlayer)
+        {
+            anim.SetBool("isWalking", false);
+        }
+        else
+        {
+            DoPatrol();
+        }
     }
 
     void DoPatrol()
