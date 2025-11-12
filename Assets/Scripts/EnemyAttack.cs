@@ -20,23 +20,19 @@ public class EnemyAttack : MonoBehaviour
     {
         seesPlayer = checkForPlayer.CheckForPlayer();
 
-        if (seesPlayer)
-        {
-            Debug.Log("Player detected!");
-        }
-        else
-        {
-            Debug.Log("No player in sight.");
-        }
-
         AttackPlayer();
-        
+
         if (playerLastDir.magnitude > Vector2.zero.magnitude && !seesPlayer)
         {
             if (continueFiringTimer < continueFiringTime)
-            {                
+            {
+                continueFiringTimer += Time.deltaTime;
                 ShootAtPlayer(playerLastDir);
             }
+        }
+        else
+        {
+            continueFiringTimer = 0;
         }
     }
 
@@ -48,12 +44,7 @@ public class EnemyAttack : MonoBehaviour
         {
             aimDirection = (player.position - transform.position).normalized;
             ShootAtPlayer(aimDirection);
-            playerLastDir = aimDirection;
-            continueFiringTimer = 0;
-        }
-        else if (player.position.magnitude == Vector2.zero.magnitude)
-        {
-            continueFiringTimer += Time.deltaTime;
+            playerLastDir = aimDirection;            
         }
     }
 
