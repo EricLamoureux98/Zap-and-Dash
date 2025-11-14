@@ -12,6 +12,7 @@ public class EnemyPatrol : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
 
+    bool canPatrol = true;
     Transform currentPoint;
     float pauseTimer;
 
@@ -28,15 +29,14 @@ public class EnemyPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool seesPlayer = checkForPlayer.CheckForPlayer();        
-        if (seesPlayer)
-        {
-            anim.SetBool("isWalking", false);
-        }
-        else
-        {
-            DoPatrol();
-        }
+        if (!canPatrol) return; // Exit early if not active
+
+        DoPatrol();
+    }
+
+    public void SetActive(bool active)
+    {
+        canPatrol = active;
     }
 
     void DoPatrol()

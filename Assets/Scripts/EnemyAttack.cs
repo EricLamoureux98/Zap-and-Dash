@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
 
     [SerializeField] EnemyCheckForPlayer checkForPlayer;
 
+    bool canAttack = false;
     Transform player;
     float firerateTimer;
     float continueFiringTimer;
@@ -18,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
+        if (!canAttack) return;
+
         seesPlayer = checkForPlayer.CheckForPlayer();
 
         AttackPlayer();
@@ -34,6 +37,11 @@ public class EnemyAttack : MonoBehaviour
         {
             continueFiringTimer = 0;
         }
+    }
+
+    public void SetActive(bool active)
+    {
+        canAttack = active;
     }
 
     void AttackPlayer()
