@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     Animator anim;
     EnemyState enemyState;
     Transform targetPosition;
-    Transform lastPlayerPosition;
+    //Transform lastPlayerPosition;
     float seenPlayerTimer;
     float continueFiringTimer;
     
@@ -31,11 +31,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         bool seesPlayer = checkForPlayer.CheckForPlayer();        
+        targetPosition = checkForPlayer.player;
 
         if (seesPlayer)
         {
-            targetPosition = checkForPlayer.player;
-            lastPlayerPosition = targetPosition;
+            //lastPlayerPosition = targetPosition;
             seenPlayerTimer += Time.deltaTime;
             continueFiringTimer = 0f;
             ChangeState(EnemyState.PlayerDetected);
@@ -45,16 +45,16 @@ public class EnemyController : MonoBehaviour
                 ChangeState(EnemyState.Attacking);
             }
         }  
+        else if (continueFiringTimer < continueFiringTime)
+        {
+            //targetPosition = lastPlayerPosition;
+            ChangeState(EnemyState.Attacking);          
+        }
         else
         {
-            continueFiringTimer += Time.deltaTime;
-            targetPosition = lastPlayerPosition;
-
-            if (continueFiringTimer >= continueFiringTime)
-            {
-                seenPlayerTimer = 0f;
-                ChangeState(EnemyState.Patrolling);
-            }
+            continueFiringTimer -= Time.deltaTime;
+            seenPlayerTimer = 0f;
+            ChangeState(EnemyState.Patrolling);
         }
     }
 
