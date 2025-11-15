@@ -2,9 +2,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth;
+    [SerializeField] TMP_Text healthText;
     [SerializeField] float flashDuration = 0.15f;
     [SerializeField] float flashInterval  = 0.05f;
 
@@ -15,16 +16,19 @@ public class Health : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
+        UpdateHealthUI();
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         StartCoroutine(InvincibilityFlash());
+        UpdateHealthUI();
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -43,5 +47,13 @@ public class Health : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.enabled = true;
 
+    }
+
+    void UpdateHealthUI()
+    {
+        if (healthText)
+        {
+            healthText.text = currentHealth.ToString();
+        }
     }
 }

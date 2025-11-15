@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
 
     public void FireBullet(Vector2 fireDirection)
     {
-        //shootingDirection = fireDirection - (Vector2)transform.position;
         shootingDirection = fireDirection;
         rb.linearVelocity = shootingDirection * speed;
     }

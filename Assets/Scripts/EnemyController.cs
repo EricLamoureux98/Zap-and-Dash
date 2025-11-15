@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Enemy AI")]
     [SerializeField] EnemyPatrol enemyPatrol;
     [SerializeField] EnemyAttack enemyAttack;
     [SerializeField] EnemyCheckForPlayer checkForPlayer;
+
+    [Header("Enemy Stats")]
     [SerializeField] float playerSeenTime = 0.5f;
     [SerializeField] float continueFiringTime;
 
@@ -44,7 +47,7 @@ public class EnemyController : MonoBehaviour
             {
                 ChangeState(EnemyState.Attacking);
             }
-        }  
+        }                                                    // Prevents null error at startup
         else if (continueFiringTimer < continueFiringTime && lastPlayerPosition != null)
         {
             continueFiringTimer += Time.deltaTime;
