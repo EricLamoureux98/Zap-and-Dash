@@ -16005,7 +16005,7 @@ MonoBehaviour:
   enemyAttack: {fileID: 2101004217}
   checkForPlayer: {fileID: 2101004218}
   playerSeenTime: 1
-  continueFiringTime: 10
+  continueFiringTime: 1
 --- !u!114 &2101004217
 MonoBehaviour:
   m_ObjectHideFlags: 0
