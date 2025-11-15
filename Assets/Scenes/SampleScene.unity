@@ -1019,6 +1019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 999
   healthText: {fileID: 1001068244}
+  flashDuration: 0.15
+  flashInterval: 0.05
 --- !u!114 &610698132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4649,7 +4651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63.65747, y: -37.418457}
+  m_AnchoredPosition: {x: 63.657227, y: -37.418457}
   m_SizeDelta: {x: 127.3149, y: 74.8371}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001068244
@@ -15967,6 +15969,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 3
   healthText: {fileID: 0}
+  flashDuration: 0.15
+  flashInterval: 0.05
 --- !u!114 &2101004215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16001,6 +16005,7 @@ MonoBehaviour:
   enemyAttack: {fileID: 2101004217}
   checkForPlayer: {fileID: 2101004218}
   playerSeenTime: 1
+  continueFiringTime: 10
 --- !u!114 &2101004217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16015,9 +16020,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
   firePoint: {fileID: 251175950}
-  fireRate: 0.5
-  continueFiringTime: 1
-  checkForPlayer: {fileID: 2101004218}
+  fireRate: 0.15
+  damage: 0.25
 --- !u!114 &2101004218
 MonoBehaviour:
   m_ObjectHideFlags: 0

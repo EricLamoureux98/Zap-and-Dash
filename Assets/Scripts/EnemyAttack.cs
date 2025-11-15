@@ -5,38 +5,16 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform firePoint;
     [SerializeField] float fireRate = 1f;
-    [SerializeField] float continueFiringTime;
-
-    [SerializeField] EnemyCheckForPlayer checkForPlayer;
 
     bool canAttack = false;
-    Transform player;
     float firerateTimer;
-    float continueFiringTimer;
-    Vector2 playerLastDir;
     Vector2 aimDirection;
-    bool seesPlayer;
+
+    public float damage;
 
     void Update()
     {
         if (!canAttack) return;
-
-        seesPlayer = checkForPlayer.CheckForPlayer();
-
-        AttackPlayer();
-
-        if (playerLastDir.magnitude > Vector2.zero.magnitude && !seesPlayer)
-        {
-            if (continueFiringTimer < continueFiringTime)
-            {
-                continueFiringTimer += Time.deltaTime;
-                ShootAtPlayer(playerLastDir);
-            }
-        }
-        else
-        {
-            continueFiringTimer = 0;
-        }
     }
 
     public void SetActive(bool active)
@@ -44,15 +22,12 @@ public class EnemyAttack : MonoBehaviour
         canAttack = active;
     }
 
-    void AttackPlayer()
+    public void ShootAtTarget(Transform targetPosition)
     {
-        player = checkForPlayer.player;
-
-        if (player != null)
+        if (canAttack)
         {
-            aimDirection = (player.position - transform.position).normalized;
+            aimDirection = (targetPosition.position - transform.position).normalized;
             ShootAtPlayer(aimDirection);
-            playerLastDir = aimDirection;            
         }
     }
 

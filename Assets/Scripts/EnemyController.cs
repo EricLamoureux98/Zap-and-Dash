@@ -6,11 +6,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemyAttack enemyAttack;
     [SerializeField] EnemyCheckForPlayer checkForPlayer;
     [SerializeField] float playerSeenTime = 0.5f;
+    [SerializeField] float continueFiringTime;
 
     Rigidbody2D rb;
     Animator anim;
     EnemyState enemyState;
+    Transform targetPosition;
+    Transform lastPlayerPosition;
     float seenPlayerTimer;
+    float continueFiringTimer;
     
 
     void Awake()
@@ -26,23 +30,55 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        bool seesPlayer = checkForPlayer.CheckForPlayer();
+        bool seesPlayer = checkForPlayer.CheckForPlayer();        
 
         if (seesPlayer)
         {
+            targetPosition = checkForPlayer.player;
+            lastPlayerPosition = targetPosition;
             seenPlayerTimer += Time.deltaTime;
+            continueFiringTimer = 0f;
             ChangeState(EnemyState.PlayerDetected);
-        }        
 
-        if (seesPlayer && seenPlayerTimer >= playerSeenTime)
+            if (seenPlayerTimer >= playerSeenTime)
+            {
+                ChangeState(EnemyState.Attacking);
+            }
+        }  
+        else
         {
-            ChangeState(EnemyState.Attacking);
+            continueFiringTimer += Time.deltaTime;
+            targetPosition = lastPlayerPosition;
+
+            if (continueFiringTimer >= continueFiringTime)
+            {
+                seenPlayerTimer = 0f;
+                ChangeState(EnemyState.Patrolling);
+            }
         }
-        else if (!seesPlayer)
-        {
-            seenPlayerTimer = 0;
-            ChangeState(EnemyState.Patrolling);
-        }
+    }
+
+    void HandlePatrol()
+    {
+        enemyPatrol.SetActive(true);
+        enemyAttack.SetActive(false);
+        anim.SetBool("isShooting", false);
+    }
+
+    void HandleDetected()
+    {
+        enemyPatrol.SetActive(false);
+        rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isWalking", false);
+    }
+
+    void HandleAttack()
+    {
+        enemyPatrol.SetActive(false);
+        enemyAttack.SetActive(true);
+        rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isShooting", true);
+        enemyAttack.ShootAtTarget(targetPosition);
     }
 
     void ChangeState(EnemyState newState)
@@ -53,26 +89,17 @@ public class EnemyController : MonoBehaviour
 
         if (newState == EnemyState.Patrolling)
         {
-            enemyPatrol.SetActive(true);
-            enemyAttack.SetActive(false);
-            anim.SetBool("isShooting", false);
-            //anim.SetBool("isWalking", true);
+            HandlePatrol();
         }
 
         if (newState == EnemyState.PlayerDetected)
         {
-            enemyPatrol.SetActive(false);
-            rb.linearVelocity = Vector2.zero;
-            anim.SetBool("isWalking", false);
+            HandleDetected();
         }
 
         if (newState == EnemyState.Attacking)
         {
-            enemyPatrol.SetActive(false);
-            enemyAttack.SetActive(true);
-            rb.linearVelocity = Vector2.zero;
-            //anim.SetBool("isWalking", false);
-            anim.SetBool("isShooting", true);
+            HandleAttack();
         }
     }
 }

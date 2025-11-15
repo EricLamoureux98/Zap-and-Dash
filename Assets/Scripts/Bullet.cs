@@ -5,8 +5,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed;
 
     public string shooterTag;
-    public int damage = 1;
 
+    float damage = 1f;
     Rigidbody2D rb;
     Vector2 shootingDirection;
 
