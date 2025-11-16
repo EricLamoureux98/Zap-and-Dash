@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.CompareTag("Player") && shooterTag == "Enemy")
         {
-            collision.GetComponent<Health>()?.TakeDamage(damage);
+            collision.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             Destroy(gameObject);
         }
 

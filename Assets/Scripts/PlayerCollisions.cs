@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
-    [SerializeField] Health health;
+    [SerializeField] PlayerHealth health;
     //[SerializeField] CompositeCollider2D waterCollider;
 
     void OnTriggerEnter2D(Collider2D collision)

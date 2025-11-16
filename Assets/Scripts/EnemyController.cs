@@ -33,6 +33,9 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(enemyState.ToString());
+        if (enemyState == EnemyState.Dead) return;
+        
         bool seesPlayer = checkForPlayer.CheckForPlayer();        
         targetPosition = checkForPlayer.player;
 
@@ -63,7 +66,7 @@ public class EnemyController : MonoBehaviour
         if (enemyState == EnemyState.Attacking)
         {
             enemyAttack.ShootAtTarget(targetPosition);
-        }
+        }        
     }
 
     void HandlePatrol()
@@ -89,6 +92,16 @@ public class EnemyController : MonoBehaviour
         enemyAttack.ShootAtTarget(targetPosition);
     }
 
+    void HandleDying()
+    {
+        enemyPatrol.SetActive(false);
+        enemyAttack.SetActive(false); 
+        anim.SetBool("isDead", true);
+        //enemyPatrol.enabled = false;
+        this.enabled = false;
+        Destroy(gameObject, 5f);
+    }    
+
     void ChangeState(EnemyState newState)
     {
         if (newState == enemyState) return;
@@ -109,6 +122,16 @@ public class EnemyController : MonoBehaviour
         {
             HandleAttack();
         }
+
+        if (newState == EnemyState.Dead)
+        {
+            HandleDying();
+        }
+    }
+
+    public void Die()
+    {
+        ChangeState(EnemyState.Dead);
     }
 }
 
@@ -116,5 +139,6 @@ public enum EnemyState
 {
     Patrolling,
     PlayerDetected,
-    Attacking
+    Attacking,
+    Dead
 }

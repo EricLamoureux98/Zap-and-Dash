@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float flashDuration = 0.15f;
     [SerializeField] float flashInterval  = 0.05f;
+    [SerializeField] EnemyController controller;
 
     SpriteRenderer spriteRenderer;
     float currentHealth;
@@ -24,7 +25,8 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            controller.Die();
         }
     }
 

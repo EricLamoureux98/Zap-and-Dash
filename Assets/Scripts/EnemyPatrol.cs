@@ -29,14 +29,25 @@ public class EnemyPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canPatrol) return; // Exit early if not active
-
-        DoPatrol();
+        if (!canPatrol)
+        {
+            Debug.Log("Patrol is disabled");
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        
+            DoPatrol();
+            Debug.Log("Patrol running");
     }
 
     public void SetActive(bool active)
     {
         canPatrol = active;
+
+        if (!active)
+        {
+            CancelInvoke(); // Cancel any pending flips
+        }
     }
 
     void DoPatrol()
@@ -57,7 +68,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             currentPoint = (currentPoint == pointA) ? pointB : pointA;
             pauseTimer = pauseAtPointTime;
-            Invoke("Flip", pauseAtPointTime);
+            Invoke("Flip", pauseAtPointTime); // Careful with Invoke. Will run even if script is disabled - Coroutine would avoid this
         }
     }
 

@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 3
-  healthText: {fileID: 0}
   flashDuration: 0.15
   flashInterval: 0.05
+  controller: {fileID: 3979937107526970254}
 --- !u!114 &3979937107526970254
 MonoBehaviour:
   m_ObjectHideFlags: 0

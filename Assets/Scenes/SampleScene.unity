@@ -604,8 +604,8 @@ GameObject:
   - component: {fileID: 610698123}
   - component: {fileID: 610698129}
   - component: {fileID: 610698130}
-  - component: {fileID: 610698131}
   - component: {fileID: 610698132}
+  - component: {fileID: 610698133}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -979,22 +979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cae12cceb1af24e9e2844b2ca93c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimTowardMouse
---- !u!114 &610698131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610698118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a955af555e00fd54cb50aaae737218aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 999
-  healthText: {fileID: 1001068244}
-  flashDuration: 0.15
-  flashInterval: 0.05
 --- !u!114 &610698132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,7 +991,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0722c2104c2f528489e1bfe43e4dae43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisions
-  health: {fileID: 610698131}
+  health: {fileID: 610698133}
+--- !u!114 &610698133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610698118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284fda870953e8f4caebc30b1c686bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 999
+  healthText: {fileID: 1001068244}
+  flashDuration: 0.15
+  flashInterval: 0.05
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,7 +4603,7 @@ GameObject:
   - component: {fileID: 1001068245}
   - component: {fileID: 1001068244}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Health Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12331,7 +12331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1864552605
 Transform:
   m_ObjectHideFlags: 0
