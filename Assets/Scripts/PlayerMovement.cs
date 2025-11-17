@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] float variableJump = 0.5f;
     [Range(1f, 0f)][SerializeField] float groundFriction = 0.9f;
 
     [Header("Collider Info")]
@@ -130,6 +131,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             anim.SetBool("isJumping", true);
+        }
+        if (context.canceled && rb.linearVelocityY > 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocityY * variableJump);
         }
     }
 }

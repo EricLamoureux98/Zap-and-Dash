@@ -18,8 +18,9 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Transform shooterPosition)
     {
+        controller.AlertToPlayer(shooterPosition);
         currentHealth -= damage;
         StartCoroutine(InvincibilityFlash());
 

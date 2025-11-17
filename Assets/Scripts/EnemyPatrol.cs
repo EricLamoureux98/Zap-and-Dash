@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyPatrol : MonoBehaviour
 {
     [SerializeField] EnemyCheckForPlayer checkForPlayer;
+    [SerializeField] EnemyController controller;
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
     [SerializeField] float speed;
@@ -31,13 +32,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (!canPatrol)
         {
-            Debug.Log("Patrol is disabled");
             rb.linearVelocity = Vector2.zero;
             return;
         }
         
             DoPatrol();
-            Debug.Log("Patrol running");
     }
 
     public void SetActive(bool active)
@@ -64,19 +63,18 @@ public class EnemyPatrol : MonoBehaviour
         rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
         anim.SetBool("isWalking", true);
 
+        // Flip based on direction walking
+        if (rb.linearVelocity.x > 0 && transform.localScale.x < 0 || rb.linearVelocity.x < 0 && transform.localScale.x > 0)
+        {
+            controller.Flip();
+        }
+
         if (Vector2.Distance(transform.position, currentPoint.position) <= arriveThreshold)
         {
             currentPoint = (currentPoint == pointA) ? pointB : pointA;
             pauseTimer = pauseAtPointTime;
-            Invoke("Flip", pauseAtPointTime); // Careful with Invoke. Will run even if script is disabled - Coroutine would avoid this
+            //Invoke(controller.Flip, pauseAtPointTime); // Careful with Invoke. Will run even if script is disabled - Coroutine would avoid this
         }
-    }
-
-    void Flip()
-    {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
     }
 
     void OnDrawGizmos()

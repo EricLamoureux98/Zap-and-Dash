@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed;
 
     public string shooterTag;
+    public Transform shooter;
 
     float damage = 1f;
     Rigidbody2D rb;
@@ -33,7 +34,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Enemy") && shooterTag == "Player")
         {
-            collision.GetComponent<Health>()?.TakeDamage(damage);
+            collision.GetComponent<Health>()?.TakeDamage(damage, shooter);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Player") && shooterTag == "Enemy")

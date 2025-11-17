@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
   checkForPlayer: {fileID: 8068613369192302692}
+  controller: {fileID: 3979937107526970254}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   speed: 2.5

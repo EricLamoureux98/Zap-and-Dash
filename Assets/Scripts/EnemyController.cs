@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     EnemyState enemyState;
     Transform targetPosition;
     Transform lastPlayerPosition;
+    Transform shooterTarget;
     float seenPlayerTimer;
     float continueFiringTimer;
     
@@ -29,6 +30,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         ChangeState(EnemyState.Patrolling);
+        shooterTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -85,6 +87,14 @@ public class EnemyController : MonoBehaviour
 
     void HandleAttack()
     {
+        if (targetPosition == null)
+        {
+            if (shooterTarget != null)
+            {
+                enemyAttack.ShootAtTarget(shooterTarget);
+            }
+        }
+
         enemyPatrol.SetActive(false);
         enemyAttack.SetActive(true);
         rb.linearVelocity = Vector2.zero;
@@ -97,12 +107,11 @@ public class EnemyController : MonoBehaviour
         enemyPatrol.SetActive(false);
         enemyAttack.SetActive(false); 
         anim.SetBool("isDead", true);
-        //enemyPatrol.enabled = false;
         this.enabled = false;
         Destroy(gameObject, 5f);
     }    
 
-    void ChangeState(EnemyState newState)
+    public void ChangeState(EnemyState newState)
     {
         if (newState == enemyState) return;
 
@@ -132,6 +141,19 @@ public class EnemyController : MonoBehaviour
     public void Die()
     {
         ChangeState(EnemyState.Dead);
+    }
+
+    public void Flip()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+    }
+
+    public void AlertToPlayer(Transform playerTransform)
+    {
+        lastPlayerPosition = playerTransform;
+        ChangeState(EnemyState.Attacking);
     }
 }
 
