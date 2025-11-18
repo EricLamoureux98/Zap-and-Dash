@@ -257,7 +257,7 @@ MonoBehaviour:
   enemyPatrol: {fileID: 4378008433917139637}
   enemyAttack: {fileID: 8936845669079044060}
   checkForPlayer: {fileID: 8068613369192302692}
-  playerSeenTime: 2
+  playerSeenTime: 1
   continueFiringTime: 1
 --- !u!114 &4378008433917139637
 MonoBehaviour:

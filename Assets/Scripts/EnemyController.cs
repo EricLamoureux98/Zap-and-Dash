@@ -14,9 +14,10 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     EnemyState enemyState;
-    Transform targetPosition;
+    Transform playerPosition;
     Transform lastPlayerPosition;
-    Transform shooterTarget;
+    Transform shooterTarget; // Direction of player if they shoot enemy
+    Transform targetToAttack; 
     float seenPlayerTimer;
     float continueFiringTimer;
     
@@ -39,11 +40,11 @@ public class EnemyController : MonoBehaviour
         if (enemyState == EnemyState.Dead) return;
         
         bool seesPlayer = checkForPlayer.CheckForPlayer();        
-        targetPosition = checkForPlayer.player;
+        playerPosition = checkForPlayer.player;
 
         if (seesPlayer)
         {
-            lastPlayerPosition = targetPosition;
+            lastPlayerPosition = playerPosition;
             seenPlayerTimer += Time.deltaTime;
             continueFiringTimer = 0f;
             ChangeState(EnemyState.PlayerDetected);
@@ -56,7 +57,7 @@ public class EnemyController : MonoBehaviour
         else if (continueFiringTimer < continueFiringTime && lastPlayerPosition != null)
         {
             continueFiringTimer += Time.deltaTime;
-            targetPosition = lastPlayerPosition;
+            playerPosition = lastPlayerPosition;
             ChangeState(EnemyState.Attacking);          
         }
         else
@@ -67,7 +68,7 @@ public class EnemyController : MonoBehaviour
 
         if (enemyState == EnemyState.Attacking)
         {
-            enemyAttack.ShootAtTarget(targetPosition);
+            enemyAttack.ShootAtTarget(playerPosition);
         }        
     }
 
@@ -87,19 +88,28 @@ public class EnemyController : MonoBehaviour
 
     void HandleAttack()
     {
-        if (targetPosition == null)
+        if (playerPosition != null)
         {
-            if (shooterTarget != null)
-            {
-                enemyAttack.ShootAtTarget(shooterTarget);
-            }
+            targetToAttack = playerPosition;
+        }
+        else
+        {
+            targetToAttack = shooterTarget;
+        }
+
+        float directionToTarget = targetToAttack.position.x - transform.position.x;
+
+        if (rb.linearVelocity.x > 0 && directionToTarget < 0 || rb.linearVelocity.x < 0 && directionToTarget > 0 )
+        {
+            Flip();
         }
 
         enemyPatrol.SetActive(false);
         enemyAttack.SetActive(true);
+        anim.SetBool("isWalking", false);
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("isShooting", true);
-        enemyAttack.ShootAtTarget(targetPosition);
+        enemyAttack.ShootAtTarget(targetToAttack);
     }
 
     void HandleDying()
@@ -152,6 +162,7 @@ public class EnemyController : MonoBehaviour
 
     public void AlertToPlayer(Transform playerTransform)
     {
+        continueFiringTimer = 0f;
         lastPlayerPosition = playerTransform;
         ChangeState(EnemyState.Attacking);
     }

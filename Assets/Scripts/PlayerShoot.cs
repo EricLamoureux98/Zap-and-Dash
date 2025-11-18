@@ -20,7 +20,7 @@ public class PlayerShoot : MonoBehaviour
     {
         FindFirePoint();
         // Check which way the player is facing: if facing right (localScale.x > 0), shoot right; otherwise, shoot left
-        shootingDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        shootingDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left; // <----------------------- FIX THIS
 
         GameObject bulletToShoot = Instantiate(bulletPrefab, currentFirePoint.position, transform.rotation);
         bulletToShoot.GetComponent<Bullet>().FireBullet(aimTowardMouse.AimDirection);
