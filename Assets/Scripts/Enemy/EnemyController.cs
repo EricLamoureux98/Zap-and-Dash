@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemyCheckForPlayer checkForPlayer;
 
     [Header("Enemy Stats")]
+    [SerializeField] EnemySO enemySO;
     [SerializeField] float playerSeenTime = 0.5f;
     [SerializeField] float continueFiringTime;
 
@@ -144,6 +145,7 @@ public class EnemyController : MonoBehaviour
 
         enemyPatrol.SetActive(false);
         enemyAttack.SetActive(true);
+        enemyAttack.damage = enemySO.damage;
         anim.SetBool("isWalking", false);
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("isShooting", true);

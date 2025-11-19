@@ -38,6 +38,7 @@ public class EnemyAttack : MonoBehaviour
             GameObject bulletToShoot = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             bulletToShoot.GetComponent<Bullet>().FireBullet(direction);
             bulletToShoot.GetComponent<Bullet>().shooterTag = gameObject.tag; // assign who fired it
+            bulletToShoot.GetComponent<Bullet>().damage = damage;
             firerateTimer = Time.time + fireRate;
         }
     }

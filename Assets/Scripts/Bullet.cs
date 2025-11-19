@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour
 
     public string shooterTag;
     public Transform shooter;
+    public float damage = 1f;
 
-    float damage = 1f;
     Rigidbody2D rb;
     Vector2 shootingDirection;
 
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Enemy") && shooterTag == "Player")
         {
-            collision.GetComponent<Health>()?.TakeDamage(damage, shooter);
+            collision.GetComponent<EnemyHealth>()?.TakeDamage(damage, shooter);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Player") && shooterTag == "Enemy")
