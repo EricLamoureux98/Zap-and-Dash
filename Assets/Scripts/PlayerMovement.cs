@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] float knockbackForce = 10f;
     [SerializeField] float stunTime = 0.5f;
-    [SerializeField] float knockbackTime = 0.5f;
     bool isKnockedback;
 
     public bool grounded { get; private set; }
@@ -122,9 +121,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator StunTimer()
     {
-        yield return new WaitForSeconds(knockbackTime);
-        rb.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(stunTime);
+        rb.linearVelocity = Vector2.zero;
         isKnockedback = false;
     }
 

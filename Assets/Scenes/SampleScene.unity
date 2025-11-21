@@ -743,9 +743,8 @@ MonoBehaviour:
   groundFriction: 0.9
   jumpColliderSize: {x: 1, y: 1}
   jumpColliderOffset: {x: 0, y: 0.65}
-  knockbackForce: 10
-  stunTime: 0.5
-  knockbackTime: 0.5
+  knockbackForce: 15
+  stunTime: 0.1
 --- !u!114 &610698124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18615,10 +18614,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3979937107526970254, guid: d4759a27c22c57a4fb613c458e1ee11c, type: 3}
-      propertyPath: enemySO
-      value: 
-      objectReference: {fileID: 11400000, guid: 2283dfbb0d925534d8c9ca5aa8933dda, type: 2}
     - target: {fileID: 4378008433917139637, guid: d4759a27c22c57a4fb613c458e1ee11c, type: 3}
       propertyPath: pointA
       value: 

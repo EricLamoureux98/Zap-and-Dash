@@ -30,13 +30,9 @@ public class EnemyPatrol : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canPatrol)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
-        }
+        if (!canPatrol) return;
         
-            DoPatrol();
+        DoPatrol();
     }
 
     public void SetActive(bool active)

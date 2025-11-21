@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage, Transform shooterPosition)
     {
+        controller.KnockBack(shooterPosition);
         controller.AlertToPlayer(shooterPosition);
         currentHealth -= damage;
         StartCoroutine(DamageFlash());

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -11,6 +12,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemySO enemySO;
     [SerializeField] float playerSeenTime = 0.5f;
     [SerializeField] float continueFiringTime;
+
+    [Header("Knockback")]
+    [SerializeField] float knockbackForce = 10f;
+    [SerializeField] float stunTime = 0.5f;
 
     Rigidbody2D rb;
     Animator anim;
@@ -32,13 +37,13 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         ChangeState(EnemyState.Patrolling);
-        //lastPlayerPosition = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        //Debug.Log(enemyState.ToString());
+        Debug.Log(enemyState.ToString());
         if (enemyState == EnemyState.Dead) return;
+        if (enemyState == EnemyState.KnockedBack) return;
 
         UpdateTimers();
         UpdatePlayerDetection();
@@ -147,8 +152,13 @@ public class EnemyController : MonoBehaviour
         enemyAttack.SetActive(true);
         enemyAttack.damage = enemySO.damage;
         anim.SetBool("isWalking", false);
-        rb.linearVelocity = Vector2.zero;
         anim.SetBool("isShooting", true);
+    }
+
+    void HandleKnockback()
+    {
+        enemyPatrol.SetActive(false);
+        enemyAttack.SetActive(false);         
     }
 
     void HandleDying()
@@ -179,6 +189,22 @@ public class EnemyController : MonoBehaviour
         ChangeState(EnemyState.Attacking);
     }
 
+    public void KnockBack(Transform shooterPosition)
+    {
+        ChangeState(EnemyState.KnockedBack);
+        Vector2 direction = (transform.position - shooterPosition.position).normalized;
+        Vector2 force = knockbackForce * direction;
+        rb.AddForce(force, ForceMode2D.Impulse);
+        StartCoroutine(StunTimer());
+    }
+
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        rb.linearVelocity = Vector2.zero;
+        //ChangeState(EnemyState.Attacking);
+    }
+
     public void ChangeState(EnemyState newState)
     {
         if (newState == enemyState) return;
@@ -200,6 +226,11 @@ public class EnemyController : MonoBehaviour
             HandleAttack();
         }
 
+        if (newState == EnemyState.KnockedBack)
+        {
+            HandleKnockback();
+        }
+
         if (newState == EnemyState.Dead)
         {
             HandleDying();
@@ -212,5 +243,6 @@ public enum EnemyState
     Patrolling,
     PlayerDetected,
     Attacking,
+    KnockedBack,
     Dead
 }
