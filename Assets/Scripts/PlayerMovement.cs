@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Collider Info")]
     [SerializeField] Vector2 jumpColliderSize = new Vector2(1f, 1f);
     [SerializeField] Vector2 jumpColliderOffset = new Vector2(0f, 0.65f);
+    
+    [Header("Knockback")]
+    [SerializeField] float knockbackForce = 10f;
+    [SerializeField] float stunTime = 0.5f;
+    [SerializeField] float knockbackTime = 0.5f;
+    bool isKnockedback;
 
     public bool grounded { get; private set; }
     public bool isMoving { get; private set; }
@@ -44,12 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Not proper but prevents animation from playing on ledges. 
-        //if (Mathf.Abs(rb.linearVelocity.y) < 0.01f)
-        //{
-            //anim.SetBool("isJumping", false);
-        //}
-
         grounded = CheckGround();
 
         if (grounded && Mathf.Abs(rb.linearVelocity.y) < 0.01f && playerCollider.size != normalColliderSize)
@@ -61,9 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //CheckGround();
-        MovePlayer();
-        ApplyFriction();     
+        MovePlayer();        
+        ApplyFriction();   
 
         // Checks direction player is facing in contrast to movement direction
         if (moveInput.x > 0 && transform.localScale.x < 0 || moveInput.x < 0 && transform.localScale.x > 0)
@@ -75,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
+        if (isKnockedback) return;
+
         velocity = rb.linearVelocity;
         velocity.x = moveInput.x * moveSpeed;
         rb.linearVelocity = velocity;
@@ -106,6 +109,23 @@ public class PlayerMovement : MonoBehaviour
         playerCollider.size = normalColliderSize;
         playerCollider.offset = normalColliderOffset;
         transform.position += new Vector3(0, 1.75f, 0);
+    }
+
+    public void KnockBack(Transform shooterPosition)
+    {
+        isKnockedback = true;
+        StartCoroutine(StunTimer());
+        Vector2 direction = (transform.position - shooterPosition.position).normalized;
+        Vector2 force = knockbackForce * direction;
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSeconds(knockbackTime);
+        rb.linearVelocity = Vector2.zero;
+        yield return new WaitForSeconds(stunTime);
+        isKnockedback = false;
     }
 
     public void Move(InputAction.CallbackContext context)

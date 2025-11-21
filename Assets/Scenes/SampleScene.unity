@@ -743,6 +743,9 @@ MonoBehaviour:
   groundFriction: 0.9
   jumpColliderSize: {x: 1, y: 1}
   jumpColliderOffset: {x: 0, y: 0.65}
+  knockbackForce: 10
+  stunTime: 0.5
+  knockbackTime: 0.5
 --- !u!114 &610698124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +1001,6 @@ MonoBehaviour:
   firePointUp: {fileID: 2002797884}
   firePointDown: {fileID: 481165237}
   bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
-  attackSpeed: 0.5
 --- !u!114 &610698130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   healthText: {fileID: 1001068244}
   flashDuration: 0.15
   flashInterval: 0.05
+  playerMovement: {fileID: 610698123}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class PlayerCollisions : MonoBehaviour
     {        
         if (collision.CompareTag("Water"))
         {
-            health.TakeDamage(999);
+            health.TakeDamage(999, this.transform);
         }
     }
 }

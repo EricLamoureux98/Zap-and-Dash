@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] TMP_Text healthText;
     [SerializeField] float flashDuration = 0.15f;
     [SerializeField] float flashInterval  = 0.05f;
+    [SerializeField] PlayerMovement playerMovement;
 
     SpriteRenderer spriteRenderer;
     float currentHealth;
@@ -19,8 +20,9 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Transform shooterPosition)
     {
+        playerMovement.KnockBack(shooterPosition);
         currentHealth -= damage;
         StartCoroutine(InvincibilityFlash());
         UpdateHealthUI();

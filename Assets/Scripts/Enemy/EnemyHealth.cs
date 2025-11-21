@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     {
         controller.AlertToPlayer(shooterPosition);
         currentHealth -= damage;
-        StartCoroutine(InvincibilityFlash());
+        StartCoroutine(DamageFlash());
 
         if (currentHealth <= 0)
         {
@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    IEnumerator InvincibilityFlash()
+    IEnumerator DamageFlash()
     {
         float timer = 0f;
         while (timer < flashDuration)
