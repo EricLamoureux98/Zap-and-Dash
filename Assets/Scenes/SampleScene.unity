@@ -740,6 +740,7 @@ MonoBehaviour:
   moveSpeed: 8
   jumpForce: 19.25
   variableJump: 0.5
+  coyoteTime: 0.15
   groundFriction: 0.9
   jumpColliderSize: {x: 1, y: 1}
   jumpColliderOffset: {x: 0, y: 0.65}

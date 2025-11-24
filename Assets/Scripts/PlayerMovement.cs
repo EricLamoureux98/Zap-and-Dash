@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float variableJump = 0.5f;
+    [SerializeField] float coyoteTime = 0.1f;
     [Range(1f, 0f)][SerializeField] float groundFriction = 0.9f;
 
     [Header("Collider Info")]
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float knockbackForce = 10f;
     [SerializeField] float stunTime = 0.5f;
     bool isKnockedback;
+    bool isJumping;
 
     public bool grounded { get; private set; }
     public bool isMoving { get; private set; }
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 velocity;
     Vector2 normalColliderSize;
     Vector2 normalColliderOffset;
+    float coyoteTimer;
 
     void Awake()
     {
@@ -53,10 +56,20 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = CheckGround();
 
+        if (!grounded)
+        {
+            coyoteTimer += Time.deltaTime;
+        }
+        else
+        {            
+            coyoteTimer = 0f;
+        }
+
         if (grounded && Mathf.Abs(rb.linearVelocity.y) < 0.01f && playerCollider.size != normalColliderSize)
         {
             RestoreCollider();
             anim.SetBool("isJumping", false);
+            isJumping = false;
         }
     }
 
@@ -142,14 +155,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && grounded)
+        if (context.performed && (coyoteTimer <= coyoteTime || grounded))
         {
-            playerCollider.size = jumpColliderSize;
-            playerCollider.offset = jumpColliderOffset;
+            if (!isJumping)
+            {
+                isJumping = true;
+                playerCollider.size = jumpColliderSize;
+                playerCollider.offset = jumpColliderOffset;
 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            anim.SetBool("isJumping", true);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                anim.SetBool("isJumping", true);    
+            } 
         }
+
+        // Variable jump height
         if (context.canceled && rb.linearVelocityY > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocityY * variableJump);
