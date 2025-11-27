@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float variableJump = 0.5f;
     [SerializeField] float coyoteTime = 0.1f;
-    [Range(1f, 0f)][SerializeField] float groundFriction = 0.9f;
 
     [Header("Collider Info")]
     [SerializeField] Vector2 jumpColliderSize = new Vector2(1f, 1f);
@@ -56,14 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = CheckGround();
 
-        if (!grounded)
-        {
-            coyoteTimer += Time.deltaTime;
-        }
-        else
-        {            
-            coyoteTimer = 0f;
-        }
+        CoyoteTime();
 
         if (grounded && Mathf.Abs(rb.linearVelocity.y) < 0.01f && playerCollider.size != normalColliderSize)
         {
@@ -76,14 +68,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();        
-        ApplyFriction();   
 
         // Checks direction player is facing in contrast to movement direction
         if (moveInput.x > 0 && transform.localScale.x < 0 || moveInput.x < 0 && transform.localScale.x > 0)
         {
             Flip();
-        }
-        
+        }        
     }
 
     void MovePlayer()
@@ -95,11 +85,15 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
-    void ApplyFriction()
+    void CoyoteTime()
     {
-        if (grounded && moveInput.x == 0 && rb.linearVelocity.y <= 0)
+        if (!grounded)
         {
-            velocity.x *= groundFriction;
+            coyoteTimer += Time.deltaTime;
+        }
+        else
+        {            
+            coyoteTimer = 0f;
         }
     }
 

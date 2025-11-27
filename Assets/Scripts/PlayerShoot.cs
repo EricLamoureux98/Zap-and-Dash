@@ -10,10 +10,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] Transform firePointDown;
     [SerializeField] GameObject bulletPrefab;
 
-    //[SerializeField] float attackSpeed;
-
     Vector2 shootingDirection;
-    //float nextFireTime;
     Transform currentFirePoint;
 
     void Shoot()

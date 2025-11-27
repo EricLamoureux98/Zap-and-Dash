@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 8936845669079044060}
   - component: {fileID: 8068613369192302692}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Machine Gun Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   enemyPatrol: {fileID: 4378008433917139637}
   enemyAttack: {fileID: 8936845669079044060}
   checkForPlayer: {fileID: 8068613369192302692}
-  enemySO: {fileID: 11400000, guid: 2283dfbb0d925534d8c9ca5aa8933dda, type: 2}
+  enemySO: {fileID: 11400000, guid: 3adb5ed7f8efc894c8ff343b546896eb, type: 2}
   playerSeenTime: 1
   continueFiringTime: 1
   knockbackForce: 15
