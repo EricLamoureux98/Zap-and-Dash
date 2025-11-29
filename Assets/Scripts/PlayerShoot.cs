@@ -3,26 +3,41 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
+    IWeapon currentWeapon;
+
+    [SerializeField] BulletWeapon bulletWeapon;
+    [SerializeField] LaserWeapon laserWeapon;
+
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] AimTowardMouse aimTowardMouse;
     [SerializeField] Transform firePoint;
     [SerializeField] Transform firePointUp;
-    [SerializeField] Transform firePointDown;
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform firePointDown;    
 
-    Vector2 shootingDirection;
-    Transform currentFirePoint;
+    //Vector2 shootingDirection;
+    [HideInInspector] public Transform currentFirePoint;
+    
+    bool isFiring = false;
+
+    void Start()
+    {
+        //currentWeapon = bulletWeapon;
+        currentWeapon = laserWeapon;
+        currentFirePoint = firePoint;
+    }
+
+    void Update()
+    {      
+        if (isFiring && currentWeapon != null)
+        {
+            currentWeapon.Fire();
+        }
+    }
 
     void Shoot()
     {
-        FindFirePoint();
         // Check which way the player is facing: if facing right (localScale.x > 0), shoot right; otherwise, shoot left
-        shootingDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left; // <----------------------- FIX THIS
-
-        GameObject bulletToShoot = Instantiate(bulletPrefab, currentFirePoint.position, transform.rotation);
-        bulletToShoot.GetComponent<Bullet>().FireBullet(aimTowardMouse.AimDirection);
-        bulletToShoot.GetComponent<Bullet>().shooterTag = gameObject.tag; // assign who fired it
-        bulletToShoot.GetComponent<Bullet>().shooter = this.transform; // assign where it was shot from
+        //shootingDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
     }
 
     void FindFirePoint()
@@ -37,15 +52,29 @@ public class PlayerShoot : MonoBehaviour
             {
                 currentFirePoint = firePointDown;
             }
+            else
+            {
+                currentFirePoint = firePoint;
+            }
         }
-        currentFirePoint = firePoint;
+    }
+
+    public void EquipWeapon(IWeapon weapon)
+    {
+        currentWeapon = weapon;
     }
     
     public void Attack(InputAction.CallbackContext context)
     {
+        FindFirePoint();
         if (context.performed && playerMovement.grounded)
         {
-            Shoot();
+            isFiring = true;
+        }
+        
+        if (context.canceled)
+        {
+            isFiring = false;
         }
     }
 }

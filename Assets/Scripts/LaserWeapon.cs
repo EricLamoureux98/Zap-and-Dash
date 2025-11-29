@@ -1,22 +1,46 @@
 using UnityEngine;
 
-public class LaserWeapon : MonoBehaviour
+public class LaserWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField] float laserMaxDistance;
     [SerializeField] Transform firePoint;
     [SerializeField] LineRenderer lineRenderer;    
+    [SerializeField] LayerMask obstacleLayer;
+
+    //[SerializeField] AimTowardMouse aimTowardMouse;
+    //[SerializeField] PlayerShoot playerShoot;
+
+    Vector2 direction;
+    bool isFiring = false;
+
+    void Start()
+    {
+        lineRenderer.enabled = false;
+    }
 
     void Update()
     {
+        if (!isFiring)
+        {
+            lineRenderer.enabled = false;
+        }
+    }
+
+    public void Fire()
+    {
+        isFiring = true;
         ShootLaser();
+        lineRenderer.enabled = true;
     }
 
     void ShootLaser()
     {
-        Vector2 direction = transform.right;
+        direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        //Vector2 direction = transform.right;
+        //Vector2 direction = aimTowardMouse.AimDirection; // <--- Feels weird
         Vector2 endPoint; 
 
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, laserMaxDistance);
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, laserMaxDistance, obstacleLayer);
 
         if(hit.collider != null)
         {
@@ -28,7 +52,7 @@ public class LaserWeapon : MonoBehaviour
         }
         else
         {
-            // If we didn't the laser stops at max distance
+            // If we didn't hit, the laser stops at max distance
             endPoint = (Vector2)firePoint.position + direction * laserMaxDistance;
         }
 

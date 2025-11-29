@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(enemyState.ToString());
+        //Debug.Log(enemyState.ToString());
         if (enemyState == EnemyState.Dead) return;
         if (enemyState == EnemyState.KnockedBack) return;
 
