@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class AimTowardMouse : MonoBehaviour
 {
+    [SerializeField] PlayerShoot playerShoot;
+    [SerializeField] LaserWeapon laserWeapon;
     public Vector2 AimDirection { get; private set; }
 
     Animator anim;
@@ -22,7 +24,9 @@ public class AimTowardMouse : MonoBehaviour
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         AimDirection = (mouseWorldPos - (Vector2)transform.position).normalized;
 
-        
-        anim.SetFloat("aimVertical", AimDirection.y);        
+        if ((object)playerShoot.currentWeapon != laserWeapon)
+        {
+            anim.SetFloat("aimVertical", AimDirection.y);               
+        }
     }
 }

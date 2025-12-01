@@ -18,19 +18,17 @@ public class LaserWeapon : MonoBehaviour, IWeapon
         lineRenderer.enabled = false;
     }
 
-    void Update()
-    {
-        if (!isFiring)
-        {
-            lineRenderer.enabled = false;
-        }
-    }
-
     public void Fire()
     {
         isFiring = true;
         ShootLaser();
         lineRenderer.enabled = true;
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+        lineRenderer.enabled = false;
     }
 
     void ShootLaser()

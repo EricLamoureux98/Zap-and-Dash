@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1238494927512963084}
   - component: {fileID: 1406715645037579644}
   - component: {fileID: 285564326295156647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -170,3 +170,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 15
   shooterTag: 
+  shooter: {fileID: 0}
+  damage: 1

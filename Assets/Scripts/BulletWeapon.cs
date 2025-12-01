@@ -22,6 +22,11 @@ public class BulletWeapon : MonoBehaviour, IWeapon
         }
     }
 
+    public void StopFiring()
+    {
+        
+    }
+
     void Update()
     {
         fireTimer -= Time.deltaTime;

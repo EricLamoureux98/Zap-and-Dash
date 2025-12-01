@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    IWeapon currentWeapon;
+    public IWeapon currentWeapon;
 
     [SerializeField] BulletWeapon bulletWeapon;
     [SerializeField] LaserWeapon laserWeapon;
@@ -21,8 +21,8 @@ public class PlayerShoot : MonoBehaviour
 
     void Start()
     {
-        //currentWeapon = bulletWeapon;
-        currentWeapon = laserWeapon;
+        currentWeapon = bulletWeapon;
+        //currentWeapon = laserWeapon;
         currentFirePoint = firePoint;
     }
 
@@ -30,7 +30,16 @@ public class PlayerShoot : MonoBehaviour
     {      
         if (isFiring && currentWeapon != null)
         {
-            currentWeapon.Fire();
+            if (playerMovement.isJumping) //<---- Test - does not work
+            //if (playerMovement.grounded == false)
+            {
+                isFiring = false;
+                currentWeapon?.StopFiring();
+            }
+            else
+            {
+                currentWeapon.Fire();                
+            }
         }
     }
 
@@ -42,7 +51,9 @@ public class PlayerShoot : MonoBehaviour
 
     void FindFirePoint()
     {
-        if (playerMovement.isMoving)
+        //if ((object)currentWeapon == laserWeapon) return;
+
+        if (playerMovement.isMoving && (object)currentWeapon == bulletWeapon)
         {
             if (aimTowardMouse.AimDirection.y > 0.5f)
             {
@@ -75,6 +86,7 @@ public class PlayerShoot : MonoBehaviour
         if (context.canceled)
         {
             isFiring = false;
+            currentWeapon?.StopFiring();
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerWeaponPickup : MonoBehaviour
 {
-    LaserWeapon laserWeapon;
+    [SerializeField] LaserWeapon laserWeapon;
 
     void OnTriggerEnter2D(Collider2D collision)
     {

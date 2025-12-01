@@ -1078,6 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cae12cceb1af24e9e2844b2ca93c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimTowardMouse
+  playerShoot: {fileID: 610698129}
+  laserWeapon: {fileID: 1457000759}
 --- !u!114 &610698132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5184,7 +5186,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457000757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19079,7 +19081,7 @@ GameObject:
   - component: {fileID: 2113005546}
   - component: {fileID: 2113005549}
   m_Layer: 0
-  m_Name: Isometric Diamond
+  m_Name: Test Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19221,6 +19223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a6e7e6bee2a6042b38060365ac4dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponPickup
+  laserWeapon: {fileID: 1457000759}
 --- !u!1001 &2117578509
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float knockbackForce = 10f;
     [SerializeField] float stunTime = 0.5f;
     bool isKnockedback;
-    bool isJumping;
 
+    public bool isJumping { get; private set; }
     public bool grounded { get; private set; }
     public bool isMoving { get; private set; }
 
