@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4378008433917139637}
   - component: {fileID: 8936845669079044060}
   - component: {fileID: 8068613369192302692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Machine Gun Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1813913918935264474, guid: 9a7d0f5cf2dc4364ab2342e38c2106cb, type: 3}
   firePoint: {fileID: 2288377683038234388}
   fireRate: 0.15
-  damage: 0.25
+  damage: 1
 --- !u!114 &8068613369192302692
 MonoBehaviour:
   m_ObjectHideFlags: 0

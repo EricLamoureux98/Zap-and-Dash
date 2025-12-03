@@ -8,7 +8,6 @@ public class PlayerWeaponPickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Equpped laser weapon");
             collision.GetComponent<PlayerShoot>()?.EquipWeapon(laserWeapon);
         }
     }

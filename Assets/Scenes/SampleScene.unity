@@ -5178,6 +5178,11 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  damage: 0.25
+  damageTime: 0.1
 --- !u!120 &1457000760
 LineRenderer:
   serializedVersion: 2
@@ -5408,6 +5413,11 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  damage: 0.1
+  damageTime: 0
 --- !u!120 &1539172825
 LineRenderer:
   serializedVersion: 2

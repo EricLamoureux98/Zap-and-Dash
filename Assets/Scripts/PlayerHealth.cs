@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     float currentHealth;
+    float roundedHealth;
 
     void Start()
     {
@@ -24,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerMovement.KnockBack(shooterPosition);
         currentHealth -= damage;
+        roundedHealth = Mathf.Round(currentHealth * 100f) / 100f;
+
         StartCoroutine(InvincibilityFlash());
         UpdateHealthUI();
 
@@ -55,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText)
         {
-            healthText.text = currentHealth.ToString();
+            healthText.text = roundedHealth.ToString();
         }
     }
 }

@@ -6,9 +6,11 @@ public class LaserWeapon : MonoBehaviour, IWeapon
     [SerializeField] Transform firePoint;
     [SerializeField] LineRenderer lineRenderer;    
     [SerializeField] LayerMask obstacleLayer;
-
-    //[SerializeField] AimTowardMouse aimTowardMouse;
-    //[SerializeField] PlayerShoot playerShoot;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] float damage = 0.1f;
+    [SerializeField] float damageTime;
+    
+    float damageTimer;
 
     Vector2 direction;
     bool isFiring = false;
@@ -16,6 +18,11 @@ public class LaserWeapon : MonoBehaviour, IWeapon
     void Start()
     {
         lineRenderer.enabled = false;
+    }
+
+    void Update()
+    {
+        damageTimer -= Time.deltaTime;
     }
 
     public void Fire()
@@ -34,19 +41,26 @@ public class LaserWeapon : MonoBehaviour, IWeapon
     void ShootLaser()
     {
         direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-        //Vector2 direction = transform.right;
-        //Vector2 direction = aimTowardMouse.AimDirection; // <--- Feels weird
         Vector2 endPoint; 
 
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, laserMaxDistance, obstacleLayer);
+        LayerMask combinedMask = obstacleLayer | enemyLayer;
+
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, laserMaxDistance, combinedMask);
 
         if(hit.collider != null)
         {
+            if (hit.collider.gameObject.tag == "Enemy" && damageTimer <= 0)
+            {
+                hit.collider.gameObject.GetComponent<EnemyHealth>()?.TakeDamage(damage, this.transform);
+                damageTimer = damageTime;
+            }
+            
             // hit.point returns where the raycast touches
             endPoint = hit.point; // If we hit something, the laser stops here
 
             // endPos = hit.transform.position; <--- this is wrong
             // This would return the transform (0,0) of what the raycast hit
+
         }
         else
         {
